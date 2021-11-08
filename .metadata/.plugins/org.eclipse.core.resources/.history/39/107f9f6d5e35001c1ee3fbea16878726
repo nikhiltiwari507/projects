@@ -1,0 +1,5 @@
+package com.moglix.catalogproject.service;
+
+public class FileStorageService {
+
+}

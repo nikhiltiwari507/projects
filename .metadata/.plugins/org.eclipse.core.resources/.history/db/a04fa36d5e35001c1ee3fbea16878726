@@ -1,0 +1,36 @@
+package com.moglix.catalogproject.service;
+
+import java.io.IOException;
+import java.util.stream.Stream;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.moglix.catalogproject.dto.Catalog;
+import com.moglix.catalogproject.repository.CatalogRepository;
+
+@Service
+public class FileStorageService {
+	
+
+	  @Autowired
+	  private CatalogRepository catalogRepository;
+
+	  public Catalog store(MultipartFile file) throws IOException {
+	    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+	    Catalog catalog = new Catalog(fileName, file.getContentType(), file.getBytes());
+
+	    return catalogRepository.save(catalog);
+	  }
+
+	  public Catalog getFile(String id) {
+	    return catalogRepository.findById(id).get();
+	  }
+	  
+	  public Stream<Catalog> getAllFiles() {
+	    return catalogRepository.findAll().stream();
+	  }
+
+}

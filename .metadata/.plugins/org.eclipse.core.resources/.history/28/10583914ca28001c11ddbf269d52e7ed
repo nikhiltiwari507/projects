@@ -1,0 +1,16 @@
+package com.moglix.employeemanagementsystem.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api")
+public class EmployeeController {
+	@GetMapping(value="/hello", produces = "application/json" )   //this mapping will work for get method
+	
+	public String sayHello() {
+		return "hello from nikhil";
+	}
+
+}

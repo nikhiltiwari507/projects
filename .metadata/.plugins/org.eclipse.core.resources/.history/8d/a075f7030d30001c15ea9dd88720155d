@@ -1,0 +1,50 @@
+package com.moglix.catalogproject.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.moglix.catalogproject.dto.Catalog;
+import com.moglix.catalogproject.service.CatalogService;
+
+
+
+@RestController
+@RequestMapping("/api")
+public class CatalogController {
+	
+	@Autowired
+	CatalogService catalogService;
+	@GetMapping(value="/hello")   //this mapping will work for get method
+	
+	public String sayHello() {
+		return "hello from nikhil";
+	}
+	
+
+	@PostMapping("/add")
+	public Catalog addCatalog(@RequestBody Catalog catalog) {
+		return catalogService.addcatalog(catalog);
+	
+	}
+	
+//    @GetMapping("/catalog/{id}")
+//    public  Catalog getCatalogById(@PathVariable("id")String id) {
+//    	return this.catalogService.getCatalogById(id);
+//    	
+//    }
+//    @DeleteMapping("/catalog/{id}")
+//    public String deleteEmployeeById(@PathVariable("id")String id) {
+//    	return this.catalogService.deleteCatalogById(id);
+//    	
+//}
+//    
+//    @DeleteMapping("/catalog/deleteAll")
+//    public String deleteAll() {
+//    	return this.catalogService.deleteAllCatalog();
+    }
+
+
